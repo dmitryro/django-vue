@@ -1,0 +1,56 @@
+info:
+  description: ''
+  title: ''
+  version: ''
+openapi: 3.0.0
+paths:
+  /api-token-auth/:
+    post:
+      operationId: api-token-auth_create
+      tags:
+      - api-token-auth
+  /aspects/{aspect_ratio}/:
+    get:
+      operationId: aspects_read
+      parameters:
+      - in: path
+        name: aspect_ratio
+        required: true
+        schema:
+          description: ''
+          title: ''
+          type: string
+      tags:
+      - aspects
+  /docapi:
+    get:
+      operationId: docapi_list
+      tags:
+      - docapi
+  /uuids/{uuid}/:
+    get:
+      operationId: uuids_read
+      parameters:
+      - in: path
+        name: uuid
+        required: true
+        schema:
+          description: ''
+          title: ''
+          type: string
+      tags:
+      - uuids
+  /videos/:
+    get:
+      operationId: videos_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          description: A page number within the paginated result set.
+          title: Page
+          type: integer
+      tags:
+      - videos
+servers:
+- url: ''
