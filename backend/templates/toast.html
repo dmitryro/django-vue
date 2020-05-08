@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- main vue docs -->
+<!--[if IE 9]>
+<html lang="en" class="ie9" id="docs" v-on:click="closeDropdownsAndPopovers">
+<![endif]-->
+<!--[if !IE 9]>-->
+<html lang="en" id="docs" v-on:click="closeDropdownsAndPopovers">
+<!--<![endif]-->
+        <head>
+                <title v-text="pageTitle">Grictode Components Docs</title>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
+                <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+                <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/js/gritcode-components/dist/gritcode-components.min.css" />
+
+   <script src="/bower_components/vue/dist/vue.js"></script>
+   <script src="/bower_components/gritcode-components/dist/gritcode-components-bundle.js"></script>
+
+                <style>
+                        [v-cloak] {
+                          display: none;
+                        }
+                </style>
+        </head>
+        <body v-cloak>
+
+                <!-- offcanvas wrapper -->
+                <vs-offcanvas-wrapper id="main" animation="ease" align="right">
+
+                        <vs-offcanvas-drawer>
+                                <!-- mobile drawer with navbar -->
+                                <vs-docs-drawer :routes="routes" :pkg="pkg"></vs-docs-drawer>
+                        </vs-offcanvas-drawer>
+
+                        <!-- desktop content -->
+                        <div id="docs-pages">
+                                <vs-docs-pages :routes="routes" :page-title.sync="pageTitle" :pkg="pkg"></vs-docs-pages>
+                        </div>
+
+                </vs-offcanvas-wrapper>
+
+    <!-- toast example -->
+    <vs-toast></vs-toast>
+
+                <!-- footer -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+        </body>
+</html>
+

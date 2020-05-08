@@ -1,0 +1,120 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+  <!--========================================================
+                            CONTENT
+  =========================================================-->
+  <main id="content">
+   <section class="bg-img well-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+<!--
+            <f/rm class="search-form" action="search.php" method="GET" accept-charset="utf-8">
+              <label class="search-form_label">
+                <input class="search-form_input" type="text" name="s" autocomplete="off" placeholder="Search Scripts"/>
+                <span class="search-form_liveout"></span>
+              </label>
+              <button class="search-form_submit fa-search" type="submit"></button>
+            </form>          
+-->
+          </div>
+        </div>        
+      </div>
+    </section>
+    <section class="map">
+      <div id="google-map" class="map_model"></div>
+      <ul class="map_locations">
+            <li data-x="-73.9874068" data-y="40.643180">
+          <p> 76 Beaver st, 10th floor, New York, NY. <span>(212) 202 0342</span></p>
+        </li>
+      </ul>
+    </section>
+    <section class="well5">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4">
+            <h3><span>Address </span></h3>
+            <p>Our office is conveniently located in the Financial District in Downtown NYC. Please use Wall Street stop (2,3,4,5).</p>
+            <h4>76 Beaver Street, 10th Floor,<br>New York, NY 10004.</h4>
+            <address class="addr">
+              <dl>
+                <dt>Freephone:</dt>
+                <dd><a href="callto:#">+1 212 202 0342</a></dd>
+              </dl>
+              <dl>
+                <dt>Telephone:</dt>
+                <dd><a href="callto:#">+1 212 202 0342</a></dd>
+              </dl>
+              <dl>
+                <dt>FAX:</dt>
+                <dd><a href="callto:#">+1 212 202 0342</a></dd>
+              </dl>
+              <p>E-mail: <a class="link" href="mailto:#">info@myattorneyusa.com</a></p>
+            </address>
+          </div>
+          <div class="col-xs-12 col-sm-8" id="contactus">
+
+<div class="alert-box success">
+  <strong>Thanks for contacting Grinberg & Segal!</strong>
+  <p>Your message will be reviewed and responded soon.</p>
+</div>
+
+
+
+            <h3><span>Contact</span> Us</h3>
+            <form class='mailform contact-form' method="post"  v-on="valid: validConfirm"> 
+                 {% csrf_token %}
+
+              <input type="hidden" name="form-type" value="contact"/> 
+              <fieldset> 
+                  <label> 
+                      <input type="text" 
+                      name="name"
+                      v-model="name"
+                      placeholder="Name*" 
+                      data-constraints="@LettersOnly @NotEmpty"/> 
+                  </label> 
+
+                  <label> 
+                      <input type="text" 
+                      name="phone" 
+                      v-model="phone"
+                      placeholder="Phone" 
+                      data-constraints="@Phone"/> 
+                  </label> 
+                  <label>
+
+                  <label>
+                      <input type="text"
+                      name="email" 
+                      v-model="email"
+                      placeholder="email"
+                      data-constraints="@Email @NotEmpty"/>
+                  </label>
+                  </label> 
+
+                  <label class="label_message"> 
+                      <textarea name="message*"   placeholder="Message" 
+                      v-model="message"
+                      data-constraints="@NotEmpty"></textarea> 
+                  </label> 
+
+                  <div class="mfControls"> 
+                      <span class="submit_text">required fields*</span>
+                      <button class="btn4"  v-on:click="submit" v-on:valid="confirm">Send</button> 
+                  </div> 
+              </fieldset> 
+          </form> 
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+
+
+{% endblock content %}

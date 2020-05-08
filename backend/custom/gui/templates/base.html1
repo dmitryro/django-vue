@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <html lang="en" itemscope itemtype="http://schema.org/{CONTENT_TYPE}">
+
+  <head>
+    <title>Art Revolution {% if flavour == "mobile" %}(mobile version){% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/forms.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/colorbox.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/ticker-style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/autocomplete.css" />
+     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/select2.css" />
+<!-- note that there's also blue.uni-form.css and dark.uni-form.css available if you want to try changing defaults up -->
+    <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/default.uni-form.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/dashboard.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.19/vue.min.js"></script>
+
+
+<!-- Optional theme -->
+    <style>
+      h2 {color: red;}
+    </style>
+    {% load bootstrap_toolkit %}
+    {% block extra_head %}{% endblock %}
+
+
+
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <h2>Divorces US</h2>
+      <br>
+      {% block content %}{% endblock %}
+      <br>
+      <h2>Divorces US</h2>
+      <br>
+      <div class="footer">
+        {% block footer %}
+          &copy 2016 Divorces USA
+          <br>
+          <br>
+          <br>
+        {% endblock %}
+      </div>
+    </div>
+
+
+  </body>
+</html>
+
+

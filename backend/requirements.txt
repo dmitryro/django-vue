@@ -1,7 +1,4 @@
-channels
-channels-redis
 Django
-django-channels
 django-cors-headers
 django-filter
 django-grappelli
@@ -10,7 +7,6 @@ djangorestframework-jwt
 djangorestframework-simplejwt
 django-rest-swagger
 gunicorn
-gevent
 Markdown
 psycopg2
 pytz

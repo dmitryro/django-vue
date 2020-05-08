@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load static %}
+{% load gui_extras %}
+{% load blog_extras %}
+{% load metaprop_extras %}
+{% load bootstrap_pagination %}
+
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="utf-8">
+        <meta http-equiv="cleartype" content="on">
+        <meta name="MobileOptimized" content="320">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+	<!-- Latest compiled and minified CSS -->
+
+	<!-- Optional theme -->
+
+	<!-- Latest compiled and minified JavaScript -->
+	<link rel="stylesheet" type="text/css" href="/static/css/slideout.css" />
+
+        <link rel="stylesheet" href="/static/css/misc.css" />
+        <link rel="stylesheet" href="/static/css/buttons-si.css" />
+
+        <link href="/static/css/modal.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/component.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.20/vue.min.js"></script>
+
+<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-validator/2.1.6/vue-validator.min.js"></script>
+<!--
+        <script src="https://unpkg.com/vue-validator@3.0.0-alpha.2/dist/vue-validator.min.js"></script>
+-->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="/static/js/selectize.min.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/selectize.css" />
+
+<!--
+        <script src="/static/js/jquery.js"></script>
+-->
+<!-- 
+       <script src="/static/js/rainbow-custom.min.js"></script>
+-->
+        <script src="/static/js/jquery-migrate-1.2.1.js"></script>
+        <script src="/static/js/jquery.payment.min.js"></script>
+
+<!--
+        <script src="/static/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+        <script src="/static/js/tinymce/jquery.tinymce.min.js" type="text/javascript"></script>
+        <script src="/static/js/vue_apps.js"></script>
+-->
+     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <style>
+
+.panel-row {
+    padding:1.0em 0.6em 1.0em 0.6em;
+    border-bottom:1px dotted;
+ /*   width:24.6vw; */
+    color:#959699;
+    position:relative;
+    overflow:hidden;
+    
+    font-size: 1.4vw;  
+}
+
+.panel-block {
+    font-size: 1.4vw;
+    height: 16.4vw;
+    margin-bottom: 10.2vw;
+    text-overflow: clip;
+    margin-top: 4.2vw;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ca2222;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2ab934;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(55px);
+  -ms-transform: translateX(55px);
+  transform: translateX(55px);
+}
+
+/*------ ADDED CSS ---------*/
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+input:checked+ .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;}
+
+.has-error input {
+    border-width: 2px;
+}
+.validation.text-danger:after {
+    content:'Validation failed';
+}
+.validation.text-success:after {
+    content:'Validation passed';
+}
+
+
+.button {
+    background-color: #959699; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius:5px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.button1 {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button2:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+/* Color of invalid field */
+.has-error .control-label,
+.has-error .help-block,
+.has-error .form-control-feedback {
+    color: #a94442;
+}
+
+/* Color of valid field */
+.has-success .control-label,
+.has-success .help-block,
+.has-success .form-control-feedback {
+    color: #3c763d;
+}
+
+
+
+.input-lg {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+textarea.form-control {
+    height: 150px;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+input {
+    line-height: normal;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+/*
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*/
+input:not([type]), input[type="email" i], input[type="number" i], input[type="password" i], input[type="tel" i], input[type="url" i], input[type="text" i] {
+    padding: 1px 0px;
+}
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+/*
+    border-color: initial;
+*/
+    border-image: initial;
+}
+input, textarea, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+}
+input, textarea, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+
+.styled-select {
+   background: url(https://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 180px;
+}
+
+.styled-select select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 200px;
+}
+
+.styled-select.slate {
+   background: url(https://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 180px;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+
+/* -------------------- Rounded Corners */
+.rounded {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+/* -------------------- Colors: Background */
+.slate   { background-color: #ddd; }
+.green   { background-color: #779126; }
+.blue    { background-color: #3b8ec2; }
+.yellow  { background-color: #eec111; }
+.black   { background-color: #000; }
+
+/* -------------------- Colors: Text */
+.slate select   { color: #000; }
+.green select   { color: #fff; }
+.blue select    { color: #fff; }
+.yellow select  { color: #000; }
+.black select   { color: #fff; }
+
+
+/* -------------------- Select Box Styles: danielneumann.com Method */
+/* -------------------- Source: https://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */
+#mainselection select {
+   border: 0;
+   color: #EEE;
+   background: transparent;
+   font-size: 20px;
+   font-weight: bold;
+   padding: 2px 10px;
+   width: 378px;
+   *width: 350px;
+   *background: #58B14C;
+   -webkit-appearance: none;
+}
+
+#mainselection {
+   overflow:hidden;
+   width:350px;
+   -moz-border-radius: 9px 9px 9px 9px;
+   -webkit-border-radius: 9px 9px 9px 9px;
+   border-radius: 9px 9px 9px 9px;
+   box-shadow: 1px 1px 11px #330033;
+   background: #58B14C url("https://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
+}
+
+
+/* -------------------- Select Box Styles: stackoverflow.com Method */
+/* -------------------- Source: https://stackoverflow.com/a/5809186 */
+select#soflow, select#soflow-color {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(https://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}
+
+select#soflow-color {
+   color: #fff;
+   background-image: url(https://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);
+   background-color: #779126;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   padding-left: 15px;
+}
+
+textarea {
+   overflow:hidden;
+}
+
+.checkmark {
+    display:inline-block;
+    width: 22px;
+    height:22px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+}
+
+.checkmark_circle {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #8AC149;
+    border-radius:11px;
+    left:0;
+    top:0;
+    -webkit-transform: rotate(45deg); /* Safari and Chrome */
+    -moz-transform: rotate(45deg);   /* Firefox */
+    -ms-transform: rotate(45deg);   /* IE 9 */
+    -o-transform: rotate(45deg);   /* Opera */
+    transform: rotate(45deg);
+}
+
+.checkmark_circle_false {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #ee171b;
+    border-radius:11px;
+    left:0;
+    top:0;
+    -webkit-transform: rotate(45deg); /* Safari and Chrome */
+    -moz-transform: rotate(45deg);   /* Firefox */
+    -ms-transform: rotate(45deg);   /* IE 9 */
+    -o-transform: rotate(45deg);   /* Opera */
+    transform: rotate(45deg);
+}
+
+
+.checkmark_stem {
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color:#fff;
+    left:11px;
+    top:6px;
+}
+
+.checkmark_kick {
+    position: absolute;
+    width:5px;
+    height:3px;
+    background-color:#fff;
+    left:7px;
+    top:12px;
+}
+</style>
+</head>
+    <body>
+    {% block content %}{% endblock content %}
+
+
+    <form id="notifications" action="" method="POST">
+       <input type="hidden" id="total_unseen" value="{{ total_unseen }}" />
+    </form>
+
+
+
+
+<script src="/static/js/classie.js"></script>
+<div id="fb-root"></div>
+<script src="/static/js/script.js"></script>
+
+
+    <script>
+          var slideout = new Slideout({
+                  'panel': document.getElementById('main'),
+                  'menu': document.getElementById('menu'),
+                  'padding': 256,
+                  'tolerance': 70
+          });
+
+          document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
+                   slideout.toggle();
+          });
+
+          document.querySelector('.menu').addEventListener('click', function(eve) {
+                   if (eve.target.nodeName === 'A') { slideout.close(); }
+          });
+
+          slideout.on('beforeopen', function() {
+                   document.querySelector('.fixed').classList.add('fixed-open');
+          });
+
+          slideout.on('beforeclose', function() {
+                   document.querySelector('.fixed').classList.remove('fixed-open');
+          });
+
+
+
+    </script>
+
+      
+                              {% if user.is_authenticated %}
+                                       {% if is_activated %}
+                                   <form  method="POST" action="">
+                                      {% csrf_token %}
+                                   <!-- template for the modal component -->
+                                   <script type="x/template" id="activation-modal-template">
+                                       <div class="modal-mask" v-show="show" transition="modal">
+                                           <div class="modal-wrapper">
+                                               <div class="modal-container" style="min-width: 25.5em;">
+                                                     <div class="modal-header">
+                                                         <div id="modal-header" class="header-left">
+                                                             <h3><strong>Your account has been confirmed!</strong></h3>
+                                                         </div>
+                                                         <div class="modal-body">
+                                                             <slot name="body">
+                                                                  You can now start using your account.
+                                                             </slot>
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                             <slot name="footer">
+                                                                 &nbsp;<br/>
+                                                             </slot>
+                                                         </div>
+                                                     </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </script>
+                                   </form>
+                                  <!-- activation-app -->
+                                   <div id="activation-app">
+                                   <!-- use the modal component, pass in the prop -->
+                                            <modal :show.sync="showModal">
+                                             <!--
+                                                 you can use custom content here to overwrite
+                                                 default content
+                                             -->
+                                            </modal>
+                                   </div>
+                                  {% endif %} 
+                              {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/static/js/dashboard.js"></script>
+
+     
+    </body>
+</html>

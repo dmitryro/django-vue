@@ -1,0 +1,7 @@
+*.swp
+.swp
+static
+media
+node_modules
+.pyc
+*.pyc

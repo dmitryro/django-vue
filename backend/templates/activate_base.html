@@ -1,0 +1,29 @@
+
+{% load static %}
+{% load gui_extras %}
+{% load blog_extras %}
+{% load services_extras %}
+{% load metaprop_extras %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Activate your account</title>
+    </head>
+
+    <body>
+        <div>
+          {% block content %}Empty page{% endblock %}
+        </div>
+
+        <hr />
+
+        <div>
+            <ul>
+            {% if user.is_authenticated %}
+            {% else %}
+            {% endif %}
+        </div>
+    </body>
+</html>

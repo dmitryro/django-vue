@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM mhart/alpine-node:12
 WORKDIR /webappadmin
 COPY package*.json ./
 ENV NODE_ENV development
@@ -8,8 +8,7 @@ RUN \
   apk update                     && \
   apk add bash                   && \
   apk add git                    && \
-  apk add python3                && \
-  npm install -G yarn typescript && \
+  npm install -G yarn            && \
   yarn 
 
 EXPOSE "9527:9527"

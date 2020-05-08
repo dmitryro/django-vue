@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+     <h4>
+      Add Payment Method
+    </h4>
+    <form id="payment-method-form" novalidate autocomplete="on" method="POST">
+        <div class="form-group">
+            <label for="cc-number" class="control-label">Card number formatting <small class="text-muted">[<span class="cc-brand"></span>]</small>
+            </label>
+            <input id="cc-number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required>
+        </div>
+        <div class="form-group">
+            <label for="cc-exp" class="control-label">Card expiry formatting</label>
+            <input id="cc-exp" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••" required>
+        </div>
+        <div class="form-group">
+            <label for="cc-cvc" class="control-label">Card CVC formatting</label>
+            <input id="cc-cvc" type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="•••" required>
+        </div>
+        <div class="form-group">
+            <label for="numeric" class="control-label">Restrict numeric</label>
+            <input id="numeric" type="tel" class="input-lg form-control" data-numeric>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+         <h2 class="validation"></h2>
+
+    </form>
+</div>
+
+</body>
+</html>

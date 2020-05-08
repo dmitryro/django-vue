@@ -1,0 +1,1621 @@
+
+{% extends "base_dashboard.html" %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% load bootstrap3 %}
+{% load static %}
+{% load gui_extras %}
+{% block content %}
+ <div style="position:fixed;margin-left:80%;z-index:99999;">
+       <div class="incoming-wrapper" style="margin-left:10px;margin-top:10px;">
+                 <img src="/media/images/on_color_large.png"
+                      height="30" width="30" alt="Incoming Notifications" />
+
+                 {% if total_unseen > 0 %}
+                     <div class="notification">
+                        <ul>
+                           <li class="notification-container">
+                                <span class="notification-counter">{{ total_unseen }}</span>
+                           </li>
+                        </ul>
+                     </div>
+                 {% endif %}
+
+       </div>
+       <div class="messages-wrapper" style="margin-left:10px;margin-top:10px;">
+                 <img src="/media/images/big_icon_network.png" height="30" width="30"/>
+       </div>
+       <div class="signout-wrapper" style="margin-left:15px;margin-top:17px;">
+         {% if logout %}
+                <a href="/signout"  class="btn2 dashboard-logout" id="show-modal" @click="showModal = false">
+                    <img src="/media/images/exit.png" height="30" width="30"/>
+                </a>
+         {% endif %}
+       </div>
+ </div>
+<div class="clear"></div>
+<nav id="menu" class="menu">
+  <a href="https://github.com/mango/slideout" target="_blank">
+    <header class="menu-header">
+      <span class="menu-header-title">
+
+
+        <!-- app -->
+           <!-- use the modal component, pass in the prop -->
+
+         {% if user.is_authenticated %}
+         {% endif %}
+
+        <!-- app -->
+        <div id="app" style="float:left;padding-top:3.5%;">
+              <!-- use the modal component, pass in the prop -->
+             {% if logout %}
+             <div style="float:left;margin-top:2.5%;">
+                <img src="{% user_meta user_id 3 %}" class="avatar" />
+             </div>
+             <div class="user-meta">
+              {% user_meta user_id 1 %}
+            &nbsp;
+            {% user_meta user_id 2 %}
+  
+             </div>
+             <div class="clear"></div>
+                &nbsp;&nbsp;
+            {% endif %}
+  
+               <modal :show.sync="showModal">
+               <!--
+/                  you can use custom content here to overwrite
+                  default content
+                     -->
+
+               </modal>
+       </div>
+       <div class="clear"></div>
+
+
+
+
+
+      </span>
+    </header>
+  </a>
+<div id="navigation">
+    
+    <a class="navigation-head" href="#" onclick="openmenu('home');swap('sectionOneLinks');collapse('sectionSixLinks');collapse('sectionTwoLinks');collapse('sectionThreeLinks');collapse('sectionFourLinks');collapse('sectionFiveLinks');return false;">
+           <div style="width:100%;">
+
+              <div style="width:20%;float:left;padding-top:15px;"><img src="/media/images/home.png" height="20" width="20" /></div>
+              <div style="width:60%;float:left;margin-top:-20px;">&nbsp;&nbsp;<h3 class="menu-section-title">Home</h3></div>
+              <div class="clear"></div>
+           </div>
+    </a>
+
+    <ul class="menu-section-list" id="sectionOneLinks" style="display: none;">
+        <li><a href="#" onclick="openmenu('profile');">Profile</a></li>
+        <li><a href="#" onclick="openmenu('preferences');">Preferences</a></li>
+        <li><a href="#" onclick="openmenu('addresses');">Addresses</a></li>
+        <li><a href="#" onclick="openmenu('contacts');">Contacts</a></li>
+    </ul>
+
+
+    <a class="navigation-head" href="#" onclick="swap('sectionTwoLinks');collapse('sectionOneLinks');collapse('sectionSixLinks');collapse('sectionThreeLinks');collapse('sectionFourLinks');collapse('sectionFiveLinks');return false;">
+           <div style="width:100%;">
+
+              <div style="width:20%;float:left;padding-top:15px;"><img src="/media/images/mastercard.png" height="20" width="20" /></div>
+              <div style="width:60%;float:left;margin-top:-20px;">&nbsp;&nbsp;<h3 class="menu-section-title">Payments</h3></div>
+              <div class="clear"></div>
+           </div>
+    </a>
+    <ul class="menu-section-list" id="sectionTwoLinks" style="display: none;">
+        <li><a href="#" onclick="openmenu('paymenthistory');">Payment History</a></li>
+        <li><a href="#" onclick="openmenu('paymentmethods');">Payment Methods</a></li>
+        <li><a href="#" onclick="openmenu('dispute');">Dispute Transaction</a></li>
+        <li><a href="#" onclick="openmenu('billingaddresses');">Billing Addresses</a></li>
+    </ul>
+
+
+    <a class="navigation-head"  href="#" onclick="swap('sectionThreeLinks');collapse('sectionOneLinks');collapse('sectionSixLinks');collapse('sectionTwoLinks');collapse('sectionFourLinks');collapse('sectionFiveLinks');return false;">
+           <div style="width:100%;">
+              <div style="width:20%;float:left;padding-top:15px;"><img src="/media/images/cases.png" height="20" width="20" /></div>
+              <div style="width:60%;float:left;margin-top:-20px;">&nbsp;&nbsp;<h3 class="menu-section-title">Cases</h3></div>
+              <div class="clear"></div>
+           </div>
+    </a>
+    <ul class="menu-section-list" id="sectionThreeLinks" style="display: none;">
+      <li><a href="#" onclick="openmenu('requestinfo');">Request Info</a></li>
+      <li><a href="#" onclick="openmenu('checkstatus');">Check Status</a></li>
+      <li><a href="#" onclick="openmenu('similarcases');">Similar Cases</a></li>
+    </ul>
+
+
+    <a class="navigation-head"  href="#" onclick="swap('sectionFourLinks');collapse('sectionOneLinks');collapse('sectionSixLinks');collapse('sectionThreeLinks');collapse('sectionTwoLinks');collapse('sectionFiveLinks');return false;">
+           <div style="width:100%;">
+              <div style="width:20%;float:left;padding-top:15px;"><img src="/media/images/post.png" height="20" width="20" /></div>
+              <div style="width:60%;float:left;margin-top:-20px;">&nbsp;&nbsp;<h3 class="menu-section-title">Posts</h3></div>
+              <div class="clear"></div>
+           </div>
+    </a>
+
+    <ul class="menu-section-list" id="sectionFourLinks" style="display: none;">
+      <li><a href="#" onclick="openmenu('allposts');">All Posts</a></li>
+      <li><a href="#" onclick="openmenu('newpost');">New Post</a></li>
+      <li><a href="#" onclick="openmenu('editpost');">Edit Post</a></li>
+    </ul>
+
+
+    <a class="navigation-head"  href="#" onclick="swap('sectionFiveLinks');collapse('sectionSixLinks');collapse('sectionOneLinks');collapse('sectionThreeLinks');collapse('sectionFourLinks');collapse('sectionTwoLinks');return false;">
+
+           <div style="width:100%;">
+
+              <div style="width:20%;float:left;padding-top:15px;"><img src="/media/images/notify.png" height="20" width="20" /></div>
+              <div style="width:60%;float:left;margin-top:-20px;">&nbsp;&nbsp;<h3 class="menu-section-title">Messages</h3></div>
+              <div class="clear"></div>
+           </div>
+
+    </a>
+    <ul class="menu-section-list" id="sectionFiveLinks" style="display: none;">
+      <li><a href="#" onclick="openmenu('onandoff');">Settings</a></li>
+      <li><a href="#" onclick="openmenu('outgoing');">Outgoing</a></li>
+      <li><a href="#" onclick="openmenu('incoming');">Incoming</a></li>
+      <li><a href="#" onclick="openmenu('notify');">Send a Message</a></li>
+      <li><a href="#" onclick="openmenu('chat');">Chat</a></li>
+    </ul>
+
+    <a class="navigation-head"  href="#" onclick="swap('sectionSixLinks');collapse('sectionOneLinks');collapse('sectionThreeLinks');collapse('sectionFourLinks');collapse('sectionTwoLinks');collapse('sectionFiveLinks');return false;">
+
+           <div style="width:100%;">
+
+              <div style="width:20%;float:left;padding-top:15px;"><img src="/media/images/notify.png" height="20" width="20" /></div>
+              <div style="width:60%;float:left;margin-top:-20px;">&nbsp;&nbsp;<h3 class="menu-section-title">Events</h3></div>
+              <div class="clear"></div>
+           </div>
+
+    </a>
+
+    <ul class="menu-section-list" id="sectionSixLinks" style="display: none;">
+      <li><a href="#" onclick="openmenu('schedule');">Schedule Event</a></li>
+      <li><a href="#" onclick="openmenu('comingevents');">Coming Events</a></li>
+      <li><a href="#" onclick="openmenu('editevent');">Edit Event</a></li>
+      <li><a href="#" onclick="openmenu('archive');">Archive</a></li>
+    </ul>
+
+
+</div>
+</nav>
+
+<header class="header-hamburger fixed">
+ <div class="hamburger-wrapper">
+   <button class="btn-hamburger js-slideout-toggle"></button> 
+ </div>
+ <div class="bar-spacer">&nbsp;&nbsp;
+ </div>
+<!--
+ <div style="position:fixed;margin-left:80%;">
+       <div class="incoming-wrapper">
+                 <img src="/media/images/on_color_large.png" 
+                      height="50" width="50" alt="Incoming Notifications" />
+       </div>
+       <div class="messages-wrapper">
+                 <img src="/media/images/big_icon_network.png" height="50" width="50" />
+       </div>
+       <div class="signout-wrapper">
+             {% if logout %}
+                <a href="/signout"  class="btn2 dashboard-logout" id="show-modal" @click="showModal = false">Sign Out</a>
+             {% endif %}
+       </div>
+ </div>
+ <div class="clear"></div>
+-->
+
+
+</header>
+
+
+<main id="main" class="panel">
+  <header class="panel-header">
+    <div class="panel-actions">
+    </div>
+  </header>
+
+  <div class="panel-demo iphone">
+  &nbsp;
+  <br/><br/>
+  &nbsp;
+  </div>
+
+                              {% if user.is_authenticated and is_activated %}
+                                   <form  method="POST" action="">
+                                      {% csrf_token %}
+                                   <!-- template for the modal component -->
+                                   <script type="x/template" id="modal-activation-template">
+                                       <div class="modal-mask" v-show="show" transition="modal">
+                                           <div class="modal-wrapper">
+                                               <div class="modal-container" style="min-width: 25.5em;">
+                                                     <div class="modal-header">
+                                                         <div id="modal-header" class="header-left">
+                                                             <h3><strong>Your account has been confirmed!</strong></h3>
+                                                         </div>
+                                                         <div class="modal-body">
+                                                             <slot name="body">
+                                                                  You can now start using your account.
+                                                             </slot>
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                             <slot name="footer">
+                                                                 &nbsp;<br/>
+                                                             </slot>
+                                                         </div>
+                                                     </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </script>
+                                   </form>
+                                  <!-- activation-app -->
+                                   <div id="activation-app">
+                                   <!-- use the modal component, pass in the prop -->
+                                            <modal :show.sync="showModal">
+                                             <!--
+                                                 you can use custom content here to overwrite
+                                                 default content
+                                             -->
+                                            </modal>
+                                   </div>
+                                  {% endif %}
+
+<div class="container" id="dashboard_panel">
+    <div class="row">
+
+  <section class="box">
+    <div class="box-content">
+
+        <div class="col-md-9 well admin-content" id="home">
+            <div class="panel-block">
+                  <div class="panel panel-default">
+                           <div class="header">Cases</div>
+                           <div class="content">
+<!--
+                                <div class="content-icon"></div>
+--> 
+                                <div class="panel-row"> 
+                                       <a href='#' onclick="openmenu('checkstatus');" style="text-decoration:none;color:inherit;">
+                                            Your Cases ({% dashboard_meta user_id 8 %})
+                                       </a>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="panel-row" class="panel-row">Similar Cases (0)</div>
+                                <div class="clear"></div>
+                                <div class="panel-row" class="panel-row">You Want To Know (0)</div>
+                                <div class="clear"></div>
+                           </div>
+                  </div>
+            </div>
+            <div class="panel-block">
+
+                  <div class="panel panel-default">
+                           <div class="header">Payments</div>
+                           <div class="content">
+                                <div class="panel-row">
+                                       <a href='#' onclick="openmenu('paymentmethods');" style="text-decoration:none;color:inherit;">
+                                       Payment Methods ({% dashboard_meta user_id 7 %})
+                                       </a>  
+                                </div>
+                                <div class="clear"></div>
+                                <div class="panel-row">Past Transactions (0)</div>
+                                <div class="clear"></div>
+                                <div class="panel-row">
+                                    <a href='#' onclick="openmenu('billingaddresses');" style="text-decoration:none;color:inherit;"> 
+                                    Billing Addresses ({% dashboard_meta user_id 6 %})
+                                    </a>
+                                </div>
+                                <div class="clear"></div>
+                           </div>
+                  </div>
+            </div>
+             <div style="clear:both;"></div>
+            <div class="panel-block">
+
+                  <div class="panel panel-default">
+                           <div class="header">Messages</div>
+                           <div class="content">
+                                <div class="panel-row">
+                                     <a href='#' onclick="openmenu('incoming');" style="text-decoration:none;color:inherit;">
+                                     Incoming Messages ({% dashboard_meta user_id 1 %})
+                                     </a>
+                                </div>
+                                </a> 
+                                <div class="clear"></div>
+                                <div  class="panel-row">
+                                    <a href='#' onclick="openmenu('outgoing');" style="text-decoration:none;color:inherit;">  
+                                    Outgoing Messages ({% dashboard_meta user_id 2 %})
+                                    </a>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="panel-row">Group Messages ({{ total_group }})</div>
+                                <div class="clear"></div>
+                           </div>
+                  </div>
+            </div>
+
+            <div class="panel-block">
+
+                  <div class="panel panel-default">
+                           <div class="header">Posts</div>
+                           <div class="content">
+                                <div class="panel-row"><a href="#"  onclick="openmenu('allposts');" style="color:#959699;">All Posts ({% dashboard_meta user_id 3 %})</a></div>
+                                <div class="clear"></div>
+                                <div class="panel-row">Comments({% dashboard_meta user_id 4 %})</div>
+                                <div class="clear"></div>
+                                <div class="panel-row">Subscriptions (0)</div>
+                                <div class="clear"></div>
+                           </div>
+                  </div>
+            </div>
+
+            <div style="clear:both;"></div>
+        </div>
+
+        </div>
+        <div class="col-md-9 well admin-content" id="profile">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.4em;">
+                                         <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                     </div>
+                                     <div style="width:84%;float:left;">
+                                         <h4>Personal Profile</h4>
+                                     </div>
+                                     <div class="clear"></div>
+
+                             </div>
+                             <div class="panel-payments">
+                                   <div id="customerprofile">
+
+                                   <div class="container" style="width:60%;margin-left:15%;">
+
+
+				    <validator name="validation4">
+				    <div class="errors">
+                                           <div style="display:none;">
+					   <validator-errors :validation="$validation4"></validator-errors>
+                                           </div>
+				    </div>
+
+				    <form id="customer-profile-form" novalidate autocomplete="on" method="POST">
+
+                                        <input id="customer-profile-form-submitted" type="hidden" />
+
+
+                                        <div class="form-group" style="margin-bottom:1.5em;">
+                                            <div style="float:left;padding-right:2.0em;">
+                                                <label for="username" class="control-label">User Name
+                                                </label>
+                                            </div>
+                                            <div style="float:left;margin-left:1.0em;">
+                                                 <span v-if="$validation4['username'].invalid" class="errors"> Username must be non-empty !!</span>
+                                            </div>
+                                            <div class="clear"></div>
+
+                                            <div>
+                       
+                                                <input id="username" type="name" class="input-lg form-control"  placeholder="User Name" v-model="username"  v-validate:username=['nonempty']>
+                                            </div>
+                                        </div>
+
+
+					<div class="form-group" style="margin-bottom:1.5em;">
+                                            <div style="float:left;padding-right:2.0em;">
+					           <label for="first-name" class="control-label">First Name
+					           </label> 
+                                            </div>
+                                            <div style="float:left;margin-left:1.0em;">
+                                                   <span v-if="$validation4['first_name'].invalid" class="errors"> First Name must be non-empty !!!</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div>
+
+					        <input id="first-name" type="name" class="input-lg form-control"  placeholder="First Name" v-model="first_name"  v-validate:first_name=['nonempty']>
+                                            </div>
+					</div>
+                                        <div class="form-group" style="margin-bottom:1.5em;">
+                                            <div style="float:left;padding-right:2.0em;">
+                                                <label for="last-name" class="control-label">Last Name
+                                                </label>
+                                            </div>
+                                            <div style="float:left;margin-left:1.0em;">
+                                                <span v-if="$validation4['last_name'].invalid" class="errors"> Last Name must be non-empty !!!</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div>
+                                                <input id="last-name" type="name" class="input-lg form-control"  placeholder="Last Name" v-model="last_name"  v-validate:last_name=['nonempty']>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="margin-bottom:1.5em;">
+                                            <div style="float:left;padding-right:2.0em;">
+                                                <label for="email" class="control-label">Email
+                                                </label>
+                                            </div>
+                                            <div style="float:left;margin-left:1.0em;">
+                                                 <span v-if="$validation4['email'].invalid" class="errors"> Email must have a valid format !!</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div>
+                                                   <input id="email" type="email" class="input-lg form-control"  placeholder="Email" v-model="email"  v-validate:email=['email']>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="margin-bottom:1.5em;">
+                                            <label for="phone" class="control-label">Phone
+                                            </label>
+                                            <input id="phone" type="phone" class="input-lg form-control"  placeholder="Phone" v-model="phone"  v-validate:email=['nonempty']>
+                                        </div>
+                                       
+                                        <div class="form-group" style="margin-bottom:1.5em;">
+                                            <label for="bio" class="control-label">Short bio.
+                                            </label>
+
+                                            <textarea name="bio" id="response-text" class="inner-textarea" style="overflow:hidden;margin-bottom:1.2em;"
+rows="5"></textarea>
+                                        </div>
+
+                                        <button type="submit" class="button button2">Save</button>
+
+
+				    </form>
+
+				    </validator>
+                                    </div>
+
+                                   </div>
+                             </div>
+              </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="preferences">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.4em;">
+                                         <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                     </div>
+                                     <div style="width:84%;float:left;">
+                                         <h4>Personal Preferences</h4>
+                                     </div>
+                                     <div class="clear"></div>
+
+                             </div>
+                             <div class="panel-payments">
+
+
+
+                             </div>
+              </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="addresses">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.4em;">
+                                         <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                     </div>
+                                     <div style="width:84%;float:left;">
+                                         <h4>Manage Your Addresses</h4>
+                                     </div>
+                                     <div class="clear"></div>
+
+                             </div>
+                             <div class="panel-payments">
+
+
+
+                             </div>
+              </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="contacts">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.4em;">
+                                         <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                     </div>
+                                     <div style="width:84%;float:left;">
+                                         <h4>Personal Contacts</h4>
+                                     </div>
+                                     <div class="clear"></div>
+
+                             </div>
+                             <div class="panel-payments">
+
+
+
+                             </div>
+              </div>
+
+        </div>
+        <div class="col-md-9 well admin-content" id="payments">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.4em;">
+                                         <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                     </div>
+                                     <div style="width:84%;float:left;">
+                                         <h4>Past Payments</h4>
+                                     </div>
+                                     <div class="clear"></div>
+
+                             </div>
+                             <div class="panel-payments">
+
+
+
+                             </div>
+              </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="paymentmethods">
+
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.2em;">
+                                         <div id="add-payment-method-back" style="display:none;">
+                                             <a href="#" style="color:red;" onclick="openmenu('paymentmethods');">Back</a>
+                                         </div>
+                                         <div id="add-payment-method-home" style="display:block;">
+                                             <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                         </div>
+                                     </div>
+
+                                <div style="float:left; width:75%;text-align:center;padding-left:3.2em;">
+                                    <h4>Payment Methods</h4>
+                                </div>
+                                <div style="float:left; width:8%;padding-top:1.2em;">
+                                   <a href="#" style="color:#959699;text-decoration:underlined;" id="add-payment-method">Add</a>
+                                </div>
+                                <div class="clear"></div>
+                             </div>
+                             <div id="payment-methods" class="panel-payments">
+
+
+
+                             </div>
+                             <div id="add-payment-method-body" class="panel-payments" style="display:none;">
+                                    <!--
+                                      <iframe src="/static/add-payment-method.html" scrolling="no"></iframe>
+                                     -->
+
+				<div id="paymentmethod">
+				<div class="container" style="width:60%;margin-left:15%;">
+				     <h4>
+				      Add Payment Method
+				    </h4>
+				    <form id="payment-method-form" novalidate autocomplete="on" method="POST">
+					<div class="form-group" style="margin-bottom:1.5em;">
+					    <label for="cc-number" class="control-label">Card number formatting <small class="text-muted">[<span class="cc-brand"></span>]</small>
+					    </label>
+					    <input id="cc-number" v-model="credit_card" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required>
+					</div>
+					<div class="form-group" style="margin-bottom:1.5em;">
+					    <label for="cc-exp" class="control-label">Card expiry formatting</label>
+					    <input id="cc-exp" v-model="expiration" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••" required>
+					</div>
+					<div class="form-group" style="margin-bottom:1.5em;">
+					    <label for="cc-cvc" class="control-label">Card CVC formatting</label>
+					    <input id="cc-cvc" v-model="cvc" type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="•••" required>
+					</div>
+					<div class="form-group" style="margin-bottom:1.5em;">
+					    <label for="name_on_card" class="control-label">Name On Card (Full Name)</label>
+					    <input id="name_on_card" v-model="name_on_card" type="tel" class="input-lg form-control" data-numeric>
+					</div>
+					<div class="form-group" style="margin-bottom:1.5em;">
+						<div>
+						    <label for="make-default-payment-method" class="control-label">Set As Your Default Payment Method
+						    </label>
+						</div>
+						<div style="margin-top:0.4em;">
+						<label class="switch">
+						       <input type="checkbox" value="" id="make-default-payment-method" v-model="make_default">
+								   <div class="slider round"><!--ADDED HTML --><span class="on">YES</span><span class="off">NO</span><!--END--></div>
+						</label>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+                                         <button class="button button2" v-on:click="submitpayment"  id="submint-payment">Submit</button>
+					 <h2 class="validation"></h2>
+
+				    </form>
+				</div>
+				</div>
+
+                             </div>
+              </div>
+  
+
+        </div>
+        <div class="col-md-9 well admin-content" id="dispute">
+
+              <div class="card card-3 panel-right">
+                             <div id="dispute-past-transaction" class="panel-payments">
+                                 <div class="panel-header">
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.4em;">
+                                         <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                     </div>
+                                     <div style="width:84%;float:left;">
+                                         <h4>Dispute Past Transaction</h4>
+                                     </div>
+                                     <div class="clear"></div>
+                                 </div>
+                                 <div id="dispute-transaction-inner" style="width:92%;padding-left:1%;">
+                                 </div>
+                            </div>
+               </div>
+        </div>
+
+
+
+        <div class="col-md-9 well admin-content" id="billingaddresses">
+
+
+            
+              <div class="card card-3 panel-right">
+                             <div id="#edit-billing-address">
+                             <div id="edit-billing-address" class="panel-payments">
+                                 <div class="panel-header">
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.4em;">
+                                         <a href="#" style="color:red;" onclick="openmenu('billingaddresses');">Back</a>
+                                     </div>
+                                     <div style="width:84%;float:left;">
+                                         <h4>Edit Billing Address</h4>
+                                     </div>
+                                     <div class="clear"></div>
+                                 </div>
+                                 <div id="edit-billing-addresses-inner" style="width:90%;padding-left:2%;padding-right:2%;padding-top:2%;">
+
+
+    
+    <validator name="validation3">
+    <div class="errors">
+           <div style="display:none;">
+               <validator-errors :validation="$validation3"></validator-errors>
+           </div>
+    </div>
+
+
+    <form id="edit-billing-address-form" novalidate autocomplete="on" method="POST">
+        <input id="edit-address-id" type="hidden"  v-model="address_id" />
+        <input id="edit-billing-address-form-submitted" type="hidden" />
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+                <label for="edit-nickname" class="control-label">Address Nickname
+                </label>
+            </div>
+
+            <div style="float:left;margin-left:1.0em;">
+                 <span v-if="$validation3['nickname'].invalid" class="errors">Address nickname  must be non-empty !!!</span>
+            </div>           
+           <div class="clear"></div> 
+           <div>
+                <input id="edit-nickname" type="name" class="input-lg form-control"  placeholder="Address Nickname" v-model="nickname"  v-validate:nickname=['nonempty']>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+                <label for="edit-name-or-company" class="control-label">Name or Company
+                </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                 <span v-if="$validation3['name_or_company'].invalid" class="errors">Name or company  must be non-empty !!!</span>
+            </div>
+           <div class="clear"></div>
+           <div>
+                        <input id="edit-name-or-company" type="name" class="input-lg form-control"  placeholder="Name or Company" v-model="name_or_company"  v-validate:name_or_company=['nonempty']>
+           </div>
+        </div>
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+                <label for="edit-address-1" class="control-label">Address 1
+                </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                 <span v-if="$validation3['address_1'].invalid" class="errors">Address must be non-empty !!!</span>
+            </div>
+           <div class="clear"></div>
+           <div>
+
+               <input id="edit-address-1" type="name" class="input-lg form-control"  placeholder="Address 1" v-model="address_1"  v-validate:address_1=['nonempty']>
+           </div>
+        </div>
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <label for="edit-address-2" class="control-label">Address 2
+            </label>
+            <input id="edit-address-2" type="name" class="input-lg form-control"  placeholder="Address 2">
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+                <label for="edit-city" class="control-label">City
+                </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                 <span v-if="$validation3['city'].invalid" class="errors">City  must be non-empty !!!</span>
+            </div>
+           <div class="clear"></div>
+           <div>
+                <input id="edit-city" type="name" class="input-lg form-control"  placeholder="City"  v-model="city" v-validate:city=['nonempty']>
+           </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+                <div>
+                    <label for="edit-make-default-billing" class="control-label">Set As Your Default Billing Address
+                    </label>
+                </div>
+                <div style="margin-top:0.4em;">
+                <label class="switch">
+                       <input type="checkbox" value="" id="edit-make-default-billing" v-model="make_default">
+                                   <div class="slider round"><!--ADDED HTML --><span class="on">YES</span><span class="off">NO</span><!--END--></div>
+                </label>
+                </div>
+                <div class="clear"></div>
+        </div>
+
+
+        <div style="float:left;width:49%;">
+                             <label for="edit-state-province" class="control-label">State or Province
+                             </label>
+
+
+                             <select id="edit-state-province" class="styled-select slate" style="width:90%;" v-model="state">
+
+                                  {% for state in states %}
+                                       <option value="{{ state.id }}">{{ state.name }}</option>
+                                  {% endfor %}
+<!--
+
+                                <option value="1">Alabama</option>
+                                <option value="2">Alaska</option>
+                                <option value="3">Alberta</option>
+                                <option value="4">Arkanzas</option>
+                                <option value="5">British Columbia</option>
+                                <option value="6">California</option>
+-->
+                             </select>
+
+        </div>
+        <div style="float:left;width:49%;">
+            <div class="form-group" style="margin-bottom:1.5em;">
+
+		    <div style="float:left;">
+			<label for="edit-zip-postal" class="control-label">Zip or Postal
+			</label>
+		    </div>
+		    <div style="float:left;margin-left:1.0em;">
+			 <span v-if="$validation3['zip_or_postal'].invalid" class="errors">Zip or Postal must be non-empty !!!</span>
+		    </div>
+		   <div class="clear"></div>
+		   <div>
+                     <input id="edit-zip-postal" type="zip-postal" class="input-lg form-control"  placeholder="Zip or Postal" style="width:90%;" v-model="zip_or_postal"  v-validate:zip_or_postal=['nonempty']>
+                   </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+		    <div style="float:left;">
+			<label for="edit-country" class="control-label">Country
+			</label>
+		    </div>
+                    <div style="float:left;margin-left:1.0em;">
+                         <span v-if="$validation3['country'].invalid" class="errors">Country must be non-empty !!!</span>
+                    </div>
+                   <div class="clear"></div>
+                   <div>
+                      <input id="edit-country" type="name" class="input-lg form-control"  placeholder="Country" v-model="country"  v-validate:country=['nonempty']>
+                   </div>
+        </div>
+
+        <button type="submit" class="button button2" v-on:click="submitbilling" v-if="$validation3.valid">Submit</button>
+
+
+    </form>
+   </validator>
+
+
+
+                                 </div>
+                                 <div class="clear"></div>
+                             </div>
+
+                       
+</div>
+                          <div id="billing-addresses-panel">
+                             <div class="panel-header">
+                                <div class="panel-editpost form-content" style="float:left;width:5%;padding-top:1.2em;">
+                                     <div style="display:none;" id="edit-billingaddress-back">
+                                         <a href="#" style="color:red;" onclick="openmenu('billingaddresses');">Back</a>
+                                     </div>
+
+                                      <div id="edit-billingaddress-home" style="display:block;">
+                                           <a style="color:red;" href="#" onclick="openmenu('home');">Home</a><br/><br/>
+                                      </div>
+
+                                </div>
+
+                                <div style="float:left; width:75%;text-align:center;padding-left:3.2em;">
+                                    <h4>Billing Addresses</h4>
+                                </div>
+                                <div style="float:left; width:8%;padding-top:1.2em;">
+                                   <a href="#" style="color:#959699;text-decoration:underlined;" id="add-billing-address">Add</a>
+                                </div>
+                                <div class="clear"></div>
+                             </div>
+
+
+
+
+                             <div id="billing-addresses" class="panel-payments">
+                                 <div class="container" style="width:60%;margin-left:15%;">
+                                       <div>
+                                           <h4>
+                                              Your Billing Addresses
+                                           </h4>
+                                       </div>
+                                       <div id="billing-addresses-inner">
+                                               list here
+                                       </div>
+                                 </div>
+                             </div>
+                             <div id="add-billing-address-body">
+
+<div class="container" style="width:90%;margin-left:2%;float:left;">
+
+     <!-- start billingaddress -->
+     <div id="billingaddress">
+
+     <div style="float:left;width:88%;">
+                                     <h4>Add Billing Address</h4>
+     </div>
+     <div class="clear"></div>
+
+    <validator name="validation2">
+    <div class="errors">
+           <div style="display:none;">
+               <validator-errors :validation="$validation2"></validator-errors>
+           </div>
+    </div>
+
+
+    <form id="billing-address-form" novalidate autocomplete="on" method="POST">
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+               <label for="add-nickname" class="control-label">Address Nickname
+               </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                 <span v-if="$validation2['nickname'].invalid" class="errors">Address nickname must be non-empty !!!</span>
+            </div>
+           <div class="clear"></div>
+           <div>
+               <input id="add-nickname" type="name" class="input-lg form-control"  placeholder="Address Nickname" v-model="nickname"  v-validate:nickname=['nonempty']>
+           </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+                <label for="add-name-or-company" class="control-label">Name or Company
+                </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                <span v-if="$validation2['name_or_company'].invalid" class="errors">Name or Company must be non-empty !!!</span>
+            </div>
+            <div class="clear"></div>
+            <div>
+                <input id="add-name-or-company" type="name" class="input-lg form-control"  placeholder="Name or Company" v-model="name_or_company"  v-validate:name_or_company=['nonempty']>
+            </div>
+        </div> 
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+                <label for="add-address-1" class="control-label">Address 1
+                </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                <span v-if="$validation2['address_1'].invalid" class="errors">Address must be non-empty !!!</span>
+            </div>
+            <div class="clear"></div>
+            <div> 
+                <input id="add-address-1" type="name" class="input-lg form-control"  placeholder="Address 1" v-model="address_1"  v-validate:address_1=['nonempty']>
+            </div>
+        </div>
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <label for="add-address-2" class="control-label">Address 2
+            </label>
+            <input id="add-address-2" type="name" class="input-lg form-control"  placeholder="Address 2">
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;">
+                <label for="add-city" class="control-label">City
+                </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                <span v-if="$validation2['city'].invalid" class="errors">City must be non-empty !!!</span>
+            </div>
+            <div class="clear"></div>
+            <div>
+                       <input id="add-city" type="name" class="input-lg form-control"  placeholder="City"  v-model="city" v-validate:city=['nonempty']>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+                <div>
+                    <label for="add-make-default-billing" class="control-label">Set As Your Default Payment Method
+                    </label>
+                </div>
+                <div style="margin-top:0.4em;">
+                <label class="switch">
+                       <input type="checkbox" id="add-make-default-billing" value="" v-model="make_default">
+                                   <div class="slider round"><!--ADDED HTML --><span class="on">YES</span><span class="off">NO</span><!--END--></div>
+                </label>
+                </div>
+                <div class="clear"></div>
+        </div>
+
+
+        <div style="float:left;width:49%;">
+                             <label for="add-state-province" class="control-label">State or Province
+                             </label>
+
+
+                             <select id="add-state-province" class="styled-select slate" style="width:90%;" v-model="state">
+                                <option value="1">Alabama</option>
+                                <option value="2">Alaska</option>
+                                <option value="3">Alberta</option>
+                                <option value="4">Arkanzas</option>
+                                <option value="5">British Columbia</option>
+                                <option value="6">California</option>
+                             </select>
+
+        </div>
+        <div style="float:left;width:49%;">
+            <div class="form-group" style="margin-bottom:1.5em;">
+                <div style="float:left;">  
+                    <label for="add-zip-postal" class="control-label">Zip or Postal 
+                    </label>
+                </div>
+                <div style="float:left;margin-left:1.0em;">
+                    <span v-if="$validation2['zip_or_postal'].invalid" class="errors">Zip or Postal must be non-empty !!!</span>
+                </div>
+                <div class="clear"></div>
+                <div>
+                     <input id="add-zip-postal" type="zip-postal" class="input-lg form-control"  placeholder="Zip or Postal" style="width:90%;" v-model="zip_or_postal"  v-validate:zip_or_postal=['nonempty']>
+                </div>
+            </div>                
+        </div>
+        <div class="clear"></div>
+
+        <div class="form-group" style="margin-bottom:1.5em;">
+            <div style="float:left;"> 
+                <label for="add-country" class="control-label">Country
+                </label>
+            </div>
+            <div style="float:left;margin-left:1.0em;">
+                    <span v-if="$validation2['country'].invalid" class="errors">Country must be non-empty !!!</span>
+            </div>
+            <div class="clear"></div>
+            <div>
+                <input id="add-country" type="name" class="input-lg form-control"  placeholder="Country" v-model="country"  v-validate:country=['nonempty']>
+            </div>
+        </div>
+
+
+        <button type="submit" class="button button2" v-on:click="submitbilling" v-if="$validation2.valid">Submit</button>
+
+
+    </form>
+    </validator>
+    </div> <!-- end billingaddress -->
+    <div class="clear"></div>
+
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+
+                             </div>
+<div class="clear"></div>
+              </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="requestinfo">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                   <h4>Request Information</h4>
+                             </div>
+                             <div class="panel-payments">
+
+
+
+                             </div>
+              </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="checkstatus">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+
+                                     <div class="panel-editpost form-content" style="width:5%;float:left;padding-top:1.2em;">
+                                         <div id="add-payment-method-back" style="display:none;">
+                                             <a href="#" style="color:red;" onclick="openmenu('checkstatus');">Back</a>
+                                         </div>
+                                         <div id="add-payment-method-home" style="display:block;">
+                                             <a href="#" style="color:red;" onclick="openmenu('home');">Home</a>
+                                         </div>
+                                     </div>
+
+                                <div style="float:left; width:75%;text-align:center;padding-left:3.2em;">
+                                    <h4>Your Cases</h4>
+                                </div>
+                                <div style="float:left; width:8%;padding-top:1.2em;">
+                                   <a href="#" style="color:#959699;text-decoration:underlined;" id="add-new-case">Add</a>
+                                </div>
+                                <div class="clear"></div>
+
+
+                             </div>
+                             <div class="panel-inner">
+
+
+
+                             </div>
+              </div>        
+
+        </div>
+        <div class="col-md-9 well admin-content" id="similarcases">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                   <h4>Similar Cases</h4>
+                             </div>
+                             <div class="panel-inner">
+
+
+
+                             </div>
+              </div>
+        </div>
+
+        <div class="col-md-9 well admin-content" id="paymenthistory">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                   <h4>Payment History</h4>
+                             </div>
+                             <div class="panel-payments">
+
+
+
+                             </div>
+              </div>
+        </div>
+
+
+        <div class="col-md-9 well admin-content" id="chat">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                   <h4>Chat</h4>
+                             </div>
+                             <div class="panel-chat">
+
+
+
+                             </div>
+              </div>
+        </div>
+
+        <div class="col-md-9 well admin-content" id="incoming">
+              <div class="card card-3 panel-right" style="min-width:370px;">
+
+                                 <div class="panel-header">
+                                     <div style="float:left;padding-top:-0.4em;width:87%;">
+                                             <div style="float:left;padding-top:1.2em;padding-left:0.6em; width:3.5%;">
+                                                 <div id="incoming_messages_home" style="display:block;">
+                                                     <a style="color:red;" href="#" onclick="openmenu('home');">Home</a><br/><br/>
+                                                 </div>
+                                             </div>
+
+                                             <div style="float:left;padding-top:1.2em;padding-left:0.6em; width:3.5%;">
+                                               <div id="incoming_messages_back" style="display:none;">
+                                                    <a style="color:red;" href="#" onclick="openmenu('incoming');">Back</a><br/><br/>
+                                               </div>
+                                             </div>
+
+                                             <div style="float:left;width:88%">
+                                                <h4>Incoming Messages</h4>
+                                             </div>
+                                     </div>
+                                     <div style="float:left;padding-top:1.2em;width:5%;">&nbsp;
+                                     </div>
+                                     <div class="clear"></div>     
+                                 </div>
+
+
+                             <div class="panel-incoming-messages panel-inner">
+
+
+
+                             </div>
+                             <div class="panel-current-incoming-message form-content">
+                                <input type="hidden" name="message_reply_id" id="message_reply_id" value=""/>
+                                <input type="hidden" name="message_sender_id" id="message_sender_id" value="" />
+                                <div id="message_sender" style="margin-left:1.0em;"></div>
+                                <div id="message_date_sent" style="margin-left:1.0em;"></div>
+                                <div id="message_reply_title_div">
+                                      <input type="text" name="message_reply_title" id="message_reply_title" class="input-lg form-control" style="width:75%;margin-top:2.4em;margin-left:1.0em;" value="" />
+                                </div>
+                                <div id="message_reply_body" style="margin-bottom:0em;margin-top:1.2em;margin-left:1.0em;"></div>
+                                <div class="respond-back" style="margin-top:1.2em;margin-left:1.0em;">
+                                      <textarea name="response" id="response-text" class="inner-textarea" style="overflow:hidden;margin-bottom:1.2em;" 
+rows="5"></textarea>
+                                </div>
+                                     
+                                      <input type="button" value="Respond" class="button button2" id='respond_back'  style="padding-top:0.2em;padding-left:-1.2em;margin-top:1.2em;margin-bottom:1.2em;margin-left:1.0em;padding-top:0.8em;" />
+
+                             </div>
+              </div>
+        </div>
+
+        <div class="col-md-9 well admin-content" id="outgoing">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+
+                                             <div style="float:left;padding-top:1.2em;padding-left:0.6em; width:3.5%;">
+                                               <div id="outgoing_messages_back" style="display:block;">
+                                                    <a style="color:red;" href="#" onclick="openmenu('home');">Home</a>
+                                               </div>
+                                             </div>
+
+                                             <div style="float:left;width:88%">
+                                                <h4>Outgoing Messages</h4>
+                                             </div>
+                                             <div class="clear"></div>
+
+                             </div>
+                             <div class="panel-outgoing-messages panel-inner">
+
+
+
+                             </div>
+              </div>
+        </div>
+
+        <div class="col-md-9 well admin-content" id="allposts">
+
+               <div style="float:left;width:100%;" class="panel-all-posts">
+                     <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                   <div style="float:left;padding-top:1.2em;padding-left:0.6em; width:4.5%;">
+                                       <div id="incoming_messages_home" style="display:block;">
+                                           <a style="color:red;" href="#" onclick="openmenu('home');">Home</a><br/><br/>
+                                       </div>
+                                   </div>
+                                   <div style="float:left; width:75%;text-align:center;padding-left:3.2em;">
+                                       <h4>All your posts</h4>
+                                   </div>
+                                   <div style="float:left; width:8%;padding-top:1.2em;">
+					<div style="float:left; width:8%;">
+					   <a href="#" style="color:#959699;text-decoration:underlined;" id="add-new-post">Add</a>
+					</div>
+                                   </div>
+                                   <div class="clear"></div>
+                             </div>
+                             <div class="panel-posts">
+
+
+
+
+                             </div>
+                             <div id="commentform" class="form-content" style="display:none;">
+                                 <form class="form" novalidate>
+                                     <input type="hidden" name="comments_post_id" id="comments_post_id" value="" />
+                                     <input type="hidden" name="comments_comment_id" id="comments_comment_id" value="" />
+                                     <div id="edit_comment_wrapper">
+                                                 <textarea name="commentbody" id="edit_comment_body" class="inner-textarea" style="overflow:hidden;margin-bottom:1.2em;"
+rows="5"></textarea>
+                                     </div>
+                                     <p class="submit">
+                                        <button type="submit" v-on:click="edit" class="button button2" id='post'>Save</button>
+                                        <!--
+                                        <input type="button" v-on:click="edit" value="Save" id='post' />
+                                        -->
+                                     </p>
+
+                                 </form>
+                             </div>
+                     </div>
+               </div>
+               <div class"clear"></div>
+
+               <div style="float:left;width:100%;" class="panel-edit-post" style="display:none;">
+
+
+               </div>
+               <div class"clear"></div>
+
+        </div>
+
+
+       <div class="col-md-9 well admin-content newpost" id="newpost">
+
+               <div style="float:left;width:100%;" class="panel-all-your-posts" style="display:none;">
+                     <div class="card card-3 panel-right">
+                             <div class="panel-header">
+
+                                   <div style="float:left;padding-top:1.2em;padding-left:0.6em; width:4.5%;">
+                                       <div id="incoming_messages_home" style="display:block;">
+                                           <a style="color:red;" href="#" onclick="openmenu('home');">Home</a><br/><br/>
+                                       </div>
+                                   </div>
+                                   <div style="float:left; width:75%;text-align:center;padding-left:3.2em;">
+                                       <h4>All your posts</h4>
+                                   </div>
+                                   <div style="float:left; width:8%;padding-top:1.2em;">
+                                        <div style="float:left; width:8%;">
+                                           <a href="#" style="color:#959699;text-decoration:underlined;" id="add-new-post-one">Add</a>
+                                        </div>
+                                   </div>
+
+                             </div>
+                              
+                             <div class="panel-posts">
+
+
+
+                             </div>
+                     </div>
+               </div>
+               <div class"clear"></div>
+
+
+           <div id="appform">
+
+            <div style="float:left;width:130%;min-width:700px;">
+
+              <div class="card card-3 panel-right">
+
+
+           	<div class="panel-header">
+
+                                   <div style="float:left;padding-top:1.2em;padding-left:0.6em; width:4.5%;">
+                                       <div id="new_post_home" style="display:block;">
+                                           <a style="color:red;" href="#" onclick="openmenu('home');">Home</a><br/><br/>
+                                       </div>
+                                   </div>
+                                   <div style="float:left; width:75%;text-align:center;padding-left:3.2em;">
+                                       <h4>New Post</h4>
+                                   </div>
+                                   <div style="float:left; width:8%;padding-top:1.2em;">
+                                   </div>
+                                   <div class="clear"></div>
+
+                 </div>
+
+                <div class="panel-editpost form-content">
+
+               <validator name="validation1">
+                <div class="errors">
+                     <div style="display:none;">
+                         <validator-errors :validation="$validation1"></validator-errors>
+                     </div>
+                </div>
+
+               <form class="form" novalidate>
+                        <input type="hidden" name="post_id" id="post_id" value="" />
+                        <div class="form-group" style="margin-bottom:1.5em;">
+                                <div style="float:left;">
+                                    <label for="posttitle" class="control-label">Title</label>
+                                </div>
+                                <div style="float:left;margin-left:1.0em;">
+                                    <span v-if="$validation1['posttitle'].invalid" class="errors"> Post title must be non-empty !!</span>
+                                </div>
+
+                                <div class="clear"></div>
+                                <div>
+		            	    <input class="input-lg form-control"  placeholder="Post Title"   style="width:32%;" type="text" id="posttitle" name="posttitle" v-validate:posttitle=['nonempty'] />
+        	              	</div>
+                        </div>
+	 
+                        <div class="form-group" style="margin-bottom:1.5em;">
+                        <label for="email">Category</label>	
+	         	<p class="category">
+<!--
+		         	<input type="text" name="category" id="category" placeholder="category" />
+-->
+                                <select name="category_id" id="category_id" class="styled-select slate category" v-validate:category_id=['numeric']>
+                                  {% for category in categories %}
+                                       <option value="{{ category.id }}">{{ category.name }}</option>
+                                  {% endfor %}
+                                </select>
+	        	</p>
+                        </div>
+		        <div class="form-group" style="margin-bottom:1.5em;">
+                                <div style="float:left;"> 
+                                    <label for="link" class="control-label">Post Link</label>
+                                </div>
+                                <div style="float:left;margin-left:1.0em;">
+                                                 <span v-if="$validation1['link'].invalid" class="errors"> This must be a valid link !!!</span>
+                                </div>
+                                <div class="clear"></div>
+                                <div>   
+		                 	<input type="text" name="link" id="link" class="input-lg form-control" v-model="link" style="width:32%;" v-validate:link=['url'] />
+                                </div>
+	                </div>
+	
+	           	<p class="text">
+		         	<textarea name="postbody" id="postbody" v-model="postbody" width="40"  /></textarea>
+	          	</p>
+
+                        <p class="submit">
+                           <!--
+                                <input type="button" v-on:click="editblog" value="Save" id='edit_post' style="display:none;" />
+                              --> 
+                                <button type="submit" class="button button2" v-on:click="editblog" id='edit_post'  style="display:none;" v-if="$validation1.valid">Save</button>
+                        </p>
+	
+	
+	         	<p class="submit">
+                                <button type="submit" class="button button2" id="post" v-on:click="submitblog" id='edit_post' v-if="$validation1.valid">Post</button>
+	            	</p>
+                        
+           	</form>
+               </validator>
+               </div>
+              </div>
+
+<!--
+               <div style="float:left;width:10%;">&nbsp;</div>
+               <div style="float:left;width:40%;">
+                     <div class="card card-3 panel-right">
+                             <div class="panel-header">                   
+                                   <h4>All your posts</h4>
+                             </div>
+                             <div class="panel-posts">
+
+
+
+                             </div>
+                     </div>
+               </div>
+               <div class"clear"></div>
+-->
+              </div>
+            </div>
+        </div>
+       </div>
+
+
+        <div class="col-md-9 well admin-content" id="editpost">
+
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                             <div style="float:left;padding-top:1.2em;padding-left:0.6em; width:4.5%;">
+                                                 <div id="incoming_messages_home" style="display:block;">
+                                                     <a style="color:red;" href="#" onclick="openmenu('allposts');">Back</a><br/><br/>
+                                                 </div>
+                                             </div>
+
+                                             <div style="float:left;width:88%">
+                                                <h4>Edit Post</h4>
+                                             </div>
+
+                                             <div class="clear"></div>
+                             </div>
+                             <div id="edit-appform" class="panel-editpost form-content">
+
+			       <validator name="validation5">
+				<div class="errors">
+				     <div style="display:none;">
+					 <validator-errors :validation="$validation5"></validator-errors>
+				     </div>
+				</div>
+
+                                <form class="form" novalidate>
+
+
+                              <div class="form-group" style="margin-bottom:1.5em;">
+
+                                <div style="float:left;">
+                                    <label for="edit-posttitle" class="control-label">Title</label>
+                                </div>
+                                <div style="float:left;margin-left:1.0em;">
+                                    <span v-if="$validation5['posttitle'].invalid" class="errors"> Post title must be non-empty !!</span>
+                                </div>
+
+                                <div class="clear"></div>
+                                <div>
+                                    <input class="input-lg form-control"  id="edit_post_title" placeholder="Post Title" v-model="posttitle"  style="width:32%;" type="text" id="edit-posttitle" name="edit-posttitle" v-validate:posttitle=['nonempty'] />
+                                </div>
+                               </div>
+
+
+                                       
+                                 <div class="form-group" style="margin-bottom:1.5em;">
+
+				       <div>
+                                                <label for="edit_category_id" class="control-label">Category</label>
+                                       </div>
+                                       <div>
+					<select name="edit_category_id" id="edit_category_id" name="edit_category_id" 
+                                                class="styled-select slate  category" v-model="category">
+					  {% for category in categories %}
+					       <option value="{{ category.id }}">{{ category.name }}</option>
+					  {% endfor %}
+					</select>
+					</div>
+                                </div>
+                                <div class="form-group" style="margin-bottom:1.5em;">
+
+
+                                <div style="float:left;">
+                                    <label for="edit_link" class="control-label">Post Link</label>
+                                </div>
+                                <div style="float:left;margin-left:1.0em;">
+                                                 <span v-if="$validation5['link'].invalid" class="errors">Post link must be a valid link!</span>
+                                </div>
+                                <div class="clear"></div>
+                                <div>
+                                        <input type="text" name="edit_link" id="edit_link" class="input-lg form-control" style="width:32%;" v-model="link" v-validate:link=['url'] />
+                                </div>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:1.5em;">
+
+
+                           
+                                               <div style="float:left;">
+                                                   <label for="edit_post_body" class="control-label">Post Body</label>
+                                               </div>
+                                               <div style="float:left;margin-left:1.0em;">
+                                                    <span v-if="$validation5['postbody'].invalid" class="errors"> Post body must be non-empty !!!</span>
+                                               </div>
+                                               <div class="clear"></div>
+
+
+                                               <div id="edit_post_wrapper">
+                                                <textarea name="edit-postbody" id="edit_post_body" class="inner-textarea" style="overflow:hidden;margin-bottom:1.2em;"
+rows="5" v-model="postbody"></textarea>
+
+                                               </div>
+                                              <div>
+                                               <p class="submit">
+                                                      <input type="button" v-on:click="editblog"  value="Save" class="button button2" style="padding-top:0.2em;padding-left:-1.2em;margin-top:1.2em;margin-bottom:1.2em;padding-top:0.8em;" id='saveeditedpost' />
+                                               </p>
+                                              </div>
+                               </div>
+                                  
+                                </form>
+                               </validator>                                 
+
+                             </div>
+
+              </div>
+ 
+
+        </div>
+
+        <div class="col-md-9 well admin-content" id="notify">
+           <div id="private_message">
+              <div style="float:left;width:45%;min-height:600px;min-width:350px;margin-bottom:10px;">
+
+
+              <div class="card card-3 panel-right" style="min-width:370px;">
+                             <div class="panel-header">
+                                   <h4>Send Private Message</h4>
+                             </div>
+                             <div class="panel-editpost form-content" style="padding-bottom:1.3em;padding-right:1.3em;min-width:350px;">
+
+
+
+                 <validator name="validation_messages">
+                   <div class="errors">
+                       <div style="display:none;">
+                           <validator-errors :validation="$validation_messages"></validator-errors>
+                       </div>
+                   </div>
+                   <form class="form" novalidate>
+                        <div style="float:left;">
+                            <label for="message_title">Title</label>
+                        </div>
+                        <div style="float:left;margin-left:1.0em;">
+                                 <span v-if="$validation_messages['message_title'].invalid" class="errors"> Title must be non-empty !!</span>
+                        </div>
+                        <div class="clear"></div>
+                       
+                        <div>
+                             <input type="hidden" name="post_id" id="post_id" value="" />
+                             <p class="name">
+                                <input type="text" id="message_title" name="message_title" class="input-lg form-control" style="width:94%;" v-validate:message_title=['nonempty'] />
+                             </p>
+                        </div>                        
+                        <div style="float:left;">
+
+                        <p> 
+                             <div>
+                                  <label for="receiver_id">Send it to</label>
+                             </div>
+                             <div>
+
+ 
+                             <select id="receiver_id" class="styled-select slate">
+                                <option value="14">{% member_meta 4 1 %}</option>
+                                <option value="15">{% member_meta 5 1 %}</option>
+                                <option value="16">{% member_meta 6 1 %}</option>
+                                {% if user.is_staff %}
+                                      <option value="17">All Customers</option>
+                                      <option value="18">All Staff</option>
+                                      <option value="19">Specific Customer</option>
+                                {% endif %}
+                             </select>
+                             </div>
+                        </p>
+                        </div>
+                        <div id="send-to-customer" class="send-to-customer" style="float:left;display:none;">
+                                <input type="text" style="margin-top:2.4em;margin-left:1.0em;width:140%;"  name="target-customer" id="target-customer" value="" size="6" class="input-lg form-control" />
+                        </div>
+                        <div class="clear"></div>
+                        <div id="send-us-message">
+                                <textarea class="form-control" name="message_body" id="message_body" rows="3"/></textarea>
+                        </div>
+                        
+                        <input type="button" class="button button2" style="padding-top:1.2em;"  v-on:click="send_message" value="Send" id='send_message' v-if="$validation_messages.valid"/>
+                 </form>
+                </validator>
+
+               </div>
+              </div>
+
+             </div>
+           </div>
+        </div>
+        <div class="col-md-9 well admin-content" id="onandoff">
+              <div class="card card-3 panel-right">
+                             <div class="panel-header">
+                                   <h4>Turn notifications on and off</h4>
+                             </div>
+                             <div class="panel-inner">
+           
+              <div>
+                <h5>Duplicate private messages to email</h5>
+                <label class="switch"><input type="checkbox" id="duplicate_to_email" value=""><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>
+<!--
+                <label for="normal-toggle-button">
+                  <input class="toggleable-button" id="email-private-toggle-button" name="email-private-toggle-button" type="checkbox" />
+                </label>
+-->
+              </div>
+
+
+              <div>
+                <h5>Notify about group events</h5>
+                <label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>
+
+
+              </div>
+
+
+                             </div>
+              </div>
+
+        </div>
+    </div>
+
+  </section>
+  <input type="hidden" id="user_id" name="user_id" value="{{ user.id }}"/>
+  <footer class="panel-footer">
+<!--    
+<p>with <span class="heart">❤</span> by <a href="https://getmango.com/en" target="_blank">Mango</a></p>
+-->
+  </footer>
+ 
+
+</div>
+</div>
+</main>
+{% endblock %}

@@ -23,17 +23,13 @@ from rest_framework.schemas import get_schema_view
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from rest_framework_jwt.views import verify_jwt_token
-from chat.views import direct_chat_view, group_chat_view
 from users.views import UserListView, CreateUserView, auth_user
 
-schema_view = get_swagger_view(title='Pastebin API')
-
+schema_view = get_swagger_view(title='Divorces API')
 
 
 urlpatterns = [
     path('auth/', auth_user),
-    path('direct/', direct_chat_view),
-    path('group/', group_chat_view),
     path('register/', CreateUserView.as_view()),
     path('users/', UserListView.as_view()),
     path('users/<int:pk>/', UserListView.as_view()),
@@ -52,6 +48,7 @@ urlpatterns = [
         extra_context={'schema_url':'openapi-schema'}
     ), name='redoc'),
     path('docapi', schema_view),
+    path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_jwt_token),
     path('api-token-refresh/', refresh_jwt_token),
     path('api-token-verify/', verify_jwt_token),

@@ -1,13 +1,24 @@
 <template>
-  <div class="container center-content">
-    <RouterView />
+  <div class="app-wraper wraper">
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="stylus" scoped>
+<script lang="ts" scoped>
+  import { Component, Vue } from 'vue-property-decorator';
+  import wechat from '@/libs/wx'
 
-.container
-  font-family 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
-  max-width 1200px
+  @Component({})
+  export default class Home extends Vue {
+    mounted () {
+      wechat();
+    }
+  }
+</script>
 
+<style lang="less">
+  @import './static/css/tour-app-base.css';
+	body {
+		background: #fafafa;
+	}
 </style>

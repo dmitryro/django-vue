@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load gui_extras %}
+{% block content %}
+
+  <main id="content">
+   <section class="bg-img well-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+<!--
+            <form class="search-form" action="search.php" method="GET" accept-charset="utf-8">
+              <label class="search-form_label">
+                <input class="search-form_input" type="text" name="s" autocomplete="off" placeholder="Search Scripts"/>
+                <span class="search-form_liveout"></span>
+              </label>
+              <button class="search-form_submit fa-search" type="submit"></button>
+            </form>          
+-->
+          </div>
+        </div>        
+      </div>
+    </section>
+    <section class="well7">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 wow fadeInUp">
+            <h3><span>About</span>  Us</h3>
+            <img src="/media/images/page-2_img01.jpg" alt=""/>
+            <h4>Pestibulum molestieenean nonummy</h4>
+            <p>Phasellus metus elit, venenatis non orci sit amet, sollicitudin efficitur lectus. Quisque finibus urna in venenatis semper. Do nec vitae mauris eget nibh efficitur porttitor.</p>
+            <br>
+            <p>Praesent urna ipsum, tincidunt et lacus lacinia, venenatis ullamcorper purus. Mauris vel lobortis leo, sed ullamcorper neque. Integer dapibus iaculis nunc</p>
+          </div>
+          <div class="col-xs-12 col-sm-4 wow fadeInUp" data-wow-delay=".2s">
+            <h3><span>Our</span> History</h3>
+            <ul class="list3">
+              <li>
+                <span class="list3_aside">2010 -</span>
+                <p>Do nec vitae mauris eget nibh efficitur porttitor. Praesent urna ipsum, tincidunt et lacus lacinia, ve nenatis ullamcorper purus. Mauris vel lobortis leo, sed ullamcorper neque. Integer </p>
+              </li>
+              <li>
+                <span class="list3_aside">2012 -</span>
+                <p>Atincidunt et lacus lacinia, ve nenatis ullamcorper purus. Mauris vel lobortis leo, sed ullamcorper neque. Integer dapibus iaculis nunc vehicula phar etra. In dictum magna nisl, ac volutpat sapien iaculis sed. Aliquam non tempor</p>
+              </li>
+              <li>
+                <span class="list3_aside">2014 -</span>
+                <p>Integer dapibus iaculis nunc vehicula pharetra. In dictum magna nisl, ac volutpat sapien iaculis sed. Aliquam non tempor orci. Aenean orci nibh, finibus maximus mattis eget, sollicitu</p>
+              </li>
+              <li>
+                <span class="list3_aside">2015 -</span>
+                <p>Mauris vel lobortis leo, sed ullamcorper neque. Integer dapibus iaculis nunc vehicula pharetra. In dictum magna nisl, ac volutpat sapien iaculis sed. Aliquam non tempor orci. Aenean orci nibh, finibus maximus mattis eget, sollicitudin </p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4 wow fadeInUp" data-wow-delay=".4s">
+            <h3><span>Our</span> Advantages</h3>
+            <h4 class="pt1">Excepteur sint occaecat cupidatat non</h4>
+            <p>Quisque finibus urna in venenatis semper. Do nec vitae mauris eget nibh efficitur porttitor. Praesent urna ipsum, tincidunt et lacus lacinia, venenatis ullamcorper purus. Maur is vel lobortis leo, sed ullamcorper neque. Integer dapibus iaculis nunc vehicula pharetra. In dictum </p>
+            <ul class="list2">
+              <li><a href="#">Pestibulum molestieenean nonummys tudin</a></li>
+              <li><a href="#">Hendreritivamus eget nibh vel metus</a></li>
+              <li><a href="#">Etiam cursus leo psumfaucibus orci suere</a></li>
+              <li><a href="#">Nulla facilisii primis neclaoreet</a></li>
+              <li><a href="#">Aenean nec eros luctus estibulum ante</a></li>
+              <li><a href="#">Ultrices pouspendisse sollic velita</a></li>
+            </ul>
+            <p>Quisque finibus urna in venenatis semper. Do nec vitae mauris eget nibh efficitur porttitor. Praesent urna ipsum, tincidunt et lacus lacinia, venenatis ullamcorper purus. Maur is vel lobortis leo, sed ullamcorper </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="well8 bg-secondary">
+      <div class="container">
+        <h3><span>Meet</span> Our Team</h3>
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 wow fadeInLeft ">
+            <img src="http://divorcesus.com/media/{% member_meta 4 3 %}" width="250" height="250" />
+            <h4>{% member_meta 4 1 %}</h4>
+            <p>{% member_meta 4 2 %}</p>
+          </div>
+          <div class="col-xs-12 col-sm-3 wow fadeInLeft" data-wow-delay=".2s">
+            <img src="http://divorcesus.com/media/{% member_meta 5 3 %}" width="250" height="250" />
+            <h4>{% member_meta 5 1 %}</h4>
+            <p>{% member_meta 5 2 %}</p>
+          </div>
+          <div class="col-xs-12 col-sm-3 wow fadeInRight" data-wow-delay=".2s">
+           <img src="http://divorcesus.com/media/{% member_meta 6 3 %}" width="250" height="250" />
+            <h4>{% member_meta 6 1 %}</h4>
+            <p>{% member_meta 6 2 %}</p>
+          </div>
+          <div class="col-xs-12 col-sm-3 wow fadeInRight">
+            <img src="/media/images/page-2_img05.jpg" alt=""/>
+            <h4>Chandra Vancova</h4>
+            <p>.venenatis semper. Do nec vitae mauris eget nibh efficitur porttitor. Praesent urna ipsum, tincidunt et lacus lacinia, venen</p>
+          </div>
+        </div>
+      </div>
+    </section>
+   <section class="well5">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 wow fadeInLeft ">
+            <h3><span>Why</span> People Choose Us</h3>
+            <div class="box mt1">
+              <div class="box_aside4">
+                <span class="icon3 fa fa-cloud-upload"></span>
+              </div>
+              <div class="box_cnt__no-flow">
+                <h4><a href="#">Excepteur sint occaecat cupidatat non</a></h4>
+                <p>Maur is vel lobortis leo, sed ullamcorper neque. Integer dapibus iaculis nunc vehic ula pharetra. In dictum </p>
+              </div>
+            </div>   
+            <div class="box">
+              <div class="box_aside4">
+                <span class="icon3 fa fa-comments-o"></span>
+              </div>
+              <div class="box_cnt__no-flow">
+                <h4><a href="#">Pestibulum molestieeneano nummy endreri tivam</a></h4>
+                <p>Integer dapibus iaculis nunc vehic ula pharetra. In dictum magna nisl, ac volutpat sapien iaculis sed. Aliquam</p>
+              </div>
+            </div>   
+            <div class="box">
+              <div class="box_aside4">
+                <span class="icon3 fa fa-database"></span>
+              </div>
+              <div class="box_cnt__no-flow">
+                 <h4><a href="#">Hendreritivamus eget nibh vel metustiam cursus</a></h4>
+                <p>Maur is vel lobortis leo, sed ullamcorper neque. Integer dapibus iaculis nunc vehic ula pharetra. In dictum </p>
+              </div>
+            </div> 
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <h3><span>Our</span> Skills</h3>
+            <h4 class="mt1">Excepteur sint occaecat cupidatat non</h4>
+            <p>Praesent urna ipsum, tincidunt et lacus lacinia, venenatis ullamcorper purus. Maur is vel lobortis leo, sed ullamcorper neque. Integer dapibus iaculis nunc </p>
+            <ul class="list2">
+              <li><a href="#">Pestibulum molestieenean nonummys</a></li>
+              <li><a href="#">Hendreritivamus eget nibh vel metus</a></li>
+              <li><a href="#">Etiam cursus leo psum</a></li>
+              <li><a href="#">Nulla facilisii primis neclaoreet</a></li>
+              <li><a href="#">Aenean nec eros luctus suere itudin</a></li>
+              <li><a href="#">Vestibulum ante faucibus orci augue nec</a></li>
+              <li><a href="#">Ultrices posuere itudin pharetra</a></li>
+              <li><a href="#">Suspendisse sollic velitauguedrerit sit amet</a></li>
+              <li><a href="#">Nam elit agna enincidunt ac viverra</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4 wow fadeInRight">
+            <h3><span>Our</span> Testimonials</h3>
+            <div class="box">
+              <div class="box_aside3">
+                <img src="/media/images/page-2_img06.jpg" alt=""/>
+              </div>
+              <div class="box_cnt__no-flow">
+                <p>Quisque finibus urna in venenatis semper. Do nec vitae mauris eget nibh effici tur porttitor.</p>
+                <h4>Inga North</h4>                
+              </div>
+            </div> 
+            <div class="box mt2">
+              <div class="box_aside3">
+                <img src="/media/images/page-2_img07.jpg" alt=""/>
+              </div>
+              <div class="box_cnt__no-flow">
+                <p>Do nec vitae mauris eget nibh effici tur pottitor. Prae sent urna ipsum, tincidunt et lacus lacinia ven</p>
+                <h4>Alan Smith</h4>                
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+{% endblock content %}
+
+

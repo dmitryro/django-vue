@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>About</title>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/static/css/grid.css">
+  <link rel="stylesheet" href="/static/css/mailform.css"/>
+  <link rel="stylesheet" href="/static/css/search.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+   <link href="/static/css/modal.css" rel="stylesheet" type="text/css">
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
+   <script src="/static/js/vue-validator.js"></script>
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/jquery-migrate-1.2.1.js"></script> 
+<script src="/static/js/script.js"></script>
+
+  <!--[if lt IE 9]> 
+  <html class="lt-ie9">
+  <div style=' clear: both; text-align:center; position: relative;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/..">
+      <img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+    </a>
+  </div>
+  <script src="/static/js/html5shiv.js"></script>
+  <![endif]-->
+
+  <script src='/static/js/device.min.js'></script>
+</head>
+<body>
+<div class="page">
+  <!--========================================================
+                            HEADER
+  =========================================================-->
+  <header>
+   <section class="panel">
+      <div class="container">
+          <ul class="inline-list">
+              <li><a href="#">Forums</a></li>
+              <li><a href="#">Community </a></li>
+              <li><a href="#">Affiliates </a></li>
+              <li><a href="#">Help</a></li>
+          </ul>
+          <div class="btn-wr-header">
+         <!-- app -->
+         <div id="app_signup" style="float:left;">
+           <!-- use the modal component, pass in the prop -->
+
+              <a href="#" class="btn2"  id="show-modal" @click="showModal = true">Create an account</a>
+             <modal :show.sync="showModal">
+               <!--
+                 you can use custom content here to overwrite
+                 default content
+                -->
+
+             </modal>
+
+
+        </div>
+        <!-- app -->
+        <div id="app" style="float:left;">
+              <!-- use the modal component, pass in the prop -->
+
+              <a href="#" class="btn2" id="show-modal" @click="showModal = true">Sign In</a>
+               <modal :show.sync="showModal">
+               <!--
+                  you can use custom content here to overwrite
+                  default content
+                     -->
+
+              </modal>
+
+
+       </div>
+       <div class="clear"></div>
+          </div>
+      </div>
+    </section>
+    <div id="stuck_container" class="stuck_container">
+      <div class="container">
+        <div class="brand">
+          <h1 class="brand_name">
+            <a href="./">Divorces US</a>
+          </h1>
+          <p class="brand_slogan">
+            Grinberg & Segal Matrimonial Services 
+          </p>
+        </div>
+
+        <nav class="nav">
+          <ul class="sf-menu" data-type="navbar">
+            <li class="active">
+              <a href="/home">Home</a>
+            </li>
+            <li>
+              <a href="/about">About</a>
+            </li>
+            <li>
+              <a href="/pricing">Pricing</a>
+            </li>
+            <li>
+              <a href="/services">Services</a>
+              <ul>
+                <li>
+                  <a href="#">Contested Divorce </a>
+                </li>
+                <li>
+                  <a href="#">Military Divorces</a>
+                </li>
+                <li>
+                  <a href="#">Ctetur adipisicing elit</a>
+                  <ul>
+                    <li>
+                      <a href="#">Latest</a>
+                    </li>
+                    <li>
+                      <a href="#">Archive</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/contacts">Contact Us</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  </header>
+  <!--========================================================
+                            CONTENT
+  =========================================================-->
+   
+ {% block content %}{% endblock content %}
+
+  <!--========================================================
+                            FOOTER
+  =========================================================-->
+  <footer>
+    <div class="container">
+      <div class="brand">
+        <h1 class="brand_name">
+          <a href="./">Divorces US</a>
+        </h1>
+        <p class="brand_slogan">
+          Grinberg & Segal Matrimonial Services
+        </p>
+      </div>
+    </div>
+    <hr/>
+    <div class="container well6">
+      <div class="row">
+        <div class="col-md-2 col-sm-6 col-xs-6">
+          <h4>About</h4>
+          <ul class="list">
+              <li><a href="#">Lorem ipsum</a></li>
+              <li><a href="#">Dolor sit amet</a></li>
+              <li><a href="#">Conse ctetur adipisicing</a></li>
+              <li><a href="#">Elit sed do eiusmod</a></li>
+              <li><a href="#">Tempor</a></li>
+              <li><a href="#">Incididunt ut labore</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-6 col-xs-16">
+          <h4>Need Help?</h4>
+          <ul class="list">
+              <li><a href="#">Ctetur adipisicing</a></li>
+              <li><a href="#">Elit sed do eiusmod</a></li>
+              <li><a href="#">Incididunt ut labore</a></li>
+              <li><a href="#">Et dolore magna aliqua</a></li>
+              <li><a href="#">Ut enim ad mini</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4  col-sm-6 col-xs-6 cl pt">
+          <h4>Email Newsletters</h4>
+          <form class='mailform subscribe-form' method="post" action="bat/rd-mailform.php"> 
+            <input type="hidden" name="form-type" value="contact"/> 
+            <fieldset> 
+              <label> 
+                  <input type="text" 
+                  name="email" 
+                  placeholder="Enter your E-mail" 
+                  data-constraints="@Email @NotEmpty"/> 
+              </label> 
+              <div class="mfControls"> 
+                <button class="fa fa-angle-right" type="submit"></button> 
+              </div> 
+            </fieldset> 
+          </form>             
+          <p class="text1">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-6 pt">
+          <div class="fb-page" data-href="https://www.facebook.com/TemplateMonster?fref=ts"
+             data-width="370" data-height="244" data-hide-cover="false" data-show-facepile="true"
+             data-show-posts="false">
+            <div class="fb-xfbml-parse-ignore">
+                <blockquote cite="https://www.facebook.com/TemplateMonster?fref=ts"><a
+                        href="https://www.facebook.com/TemplateMonster?fref=ts">TemplateMonster</a>
+                </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="container">
+      <p class="copy">Scripts © <span id="copyright-year"></span> <a href="divorcesus.com">Privacy Policy</a></p>
+      More Software Company Website Templates at <a rel="nofollow" href="http://www.templatemonster.com/category/software-company-website-templates/" target="_blank">TemplateMonster.com</a>     
+    </div>
+  </footer>
+</div>
+<div id="fb-root"></div>
+
+<!-- template for the modal component -->
+<script type="x/template" id="modal-template-signup">
+
+  <div class="modal-mask" v-show="show" transition="modal">
+    <div class="modal-wrapper">
+      <div class="modal-container">
+      
+        <div class="modal-header">
+           <div class="header-left">
+             <h3><strong>SIGN UP</strong></h3>
+           </div>
+           <div class="header-right">
+              <img src="/media/images/close_icon.png" height="20" width="20" style="margin-right:-10%;margin-top:-10%;"  @click="show = false" />
+           </div>
+           <div class="clear">
+
+        </div>
+
+        <div class="modal-body">
+          <slot name="body">
+
+      <validator name="validation2">
+        <form novalidate>
+
+        <div class="form-register" id="form-register">
+            <div class="error-message" v-text="registerError"></div>
+
+          <div class="error-message">
+            <p v-show="$validation2.first.required">First Name is Required.</p>
+          </div>
+
+            <input type="text" name="first" v-validate:first="['required']"  placeholder="First Name" v-model="registerFirst">
+
+          <div class="error-message">
+            <p v-show="$validation2.last.required">Last Name is Required.</p>
+          </div>
+
+            <input type="text" name="last" v-validate:last="['required']"  placeholder="Last Name" v-model="registerLast">
+
+          <div class="error-message">
+            <p v-show="$validation2.user.required">Username is Required.</p>
+          </div>
+
+            <input type="text" name="user" v-validate:user="['required']"  placeholder="Username" v-model="registerUser">
+
+
+          <div class="error-message">
+            <p v-show="$validation2.address.email">Email Must Have a Valid Format.</p>
+          </div>
+            <input type="text" name="email" v-validate:address="['email']"  placeholder="Email" v-model="registerEmail">
+
+
+          <div class="error-message">
+            <p v-show="$validation2.password.required">Password is Required.</p>
+          </div>
+
+            <input type="password" name="password" v-validate:password="['required']"  placeholder="Password" v-model="registerPassword">
+            
+            <input type="submit" v-model="registerSubmit" id="registerSubmit" value="Sign Up">
+            <div>
+               &nbsp;
+            </div>
+
+            <input type="button" v-model="registerSubmit" id="registerGoogle" class="google" />
+
+            <div class="links"> <a href="" v-on="click: flip('password', $event)">Already have an account?</a>
+
+            </div>
+        </div>
+
+        </form>
+      </validator>
+
+
+          </slot>
+        </div>
+
+
+      </div>
+    </div>
+
+</div>
+</script>
+
+<!-- template for the modal component -->
+<script type="x/template" id="modal-template-signin">
+
+  <div class="modal-mask" v-show="show" transition="modal">
+    <div class="modal-wrapper">
+
+ <div class="modal-container">
+
+        <div class="modal-header">
+           <div class="header-left">
+             <h3><strong>SIGN IN</strong></h3>
+           </div>
+           <div class="header-right">
+              <img src="/media/images/close_icon.png" height="20" width="20" style="margin-right:-10%;margin-top:-10%;"  @click="show = false" />
+           </div>
+           <div class="clear">
+
+        </div>
+
+        <div class="modal-body">
+          <slot name="body">
+
+      <validator name="validation1">
+        <form novalidate>
+
+        <div class="form-login" id="form-login">
+            <div class="error-message" v-text="loginError"></div>
+          <div class="error-message">
+            <p v-show="$validation1.type.required">Username or Email Required.</p>
+          </div>
+            <input type="text" name="user" v-validate:type="['required']"  placeholder="Email or Username" v-model="loginUser" v-on="keyup: submit('login', $event) | key 'enter'">
+
+          <div class="error-message">
+            <p v-show="$validation1.password.required">Password is Required.</p>
+          </div>
+
+            <input type="password" name="password" v-validate:password="['required']"  placeholder="Password" v-model="loginPassword" v-on="keyup: submit('login', $event) | key 'enter'">
+            <input type="submit" v-on="click: submit('login', $event)" v-model="loginSubmit" id="loginSubmit" value="Sign In">
+            <div class="links"> <a href="#">Forgot your password?</a>
+
+            </div>
+        </div>
+        </form>
+      </validator>
+
+          </slot>
+        </div>
+
+</div>
+
+
+
+    </div>
+
+</div>
+</script>
+<script>
+var modal_submit_register = 'Register';  
+var modal_submit_password = 'Reset Password';  
+var modal_submit_login    = 'Login';
+
+ // register modal component
+Vue.component('modal', {
+  template: '#modal-template-signin',
+  props: {
+    show: {
+      type: Boolean,
+      required: true,
+      twoWay: true
+    }
+  }
+
+})
+
+Vue.validator('email', function (val) {
+        return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(val)
+ })
+
+ // register modal component
+// start app
+new Vue({
+  el: '#app',
+  data: {
+    showModal: false,
+    active: null,
+
+        // Submit button text
+    registerSubmit: modal_submit_register,
+    passwordSubmit: modal_submit_password,
+    loginSubmit: modal_submit_login,
+    email: '',
+    username: '',
+        // Modal text fields
+    registerFirst: '',
+    registerLast: '',
+    registerEmail: '',
+    registerPassword: '',
+    loginUser: '',
+    loginPassword: '',
+    passwordEmail: '',
+    registerError: '',
+    loginError: '',
+    passwordError: '',
+  },
+  methods: {
+    open: function(which, e) {
+      // Prevents clicking the link from doing anything
+        e.preventDefault();
+        if (modal.active !== null) {
+                $('#form-' + modal.active).removeClass('active');
+                $('#' + modal.active + '-form').removeClass('active');
+        }
+
+        $('#login-modal').addClass('active');
+        $('#form-' + which).addClass('active');
+        $('#' + which + '-form').addClass('active');
+        modal.active = which;
+    },
+    close: function (e) {
+            e.preventDefault();
+            if (e.target === this.$el) {
+                $('#login-modal').removeClass('active');
+            }
+    },
+    submit: function(which, e) {
+            e.preventDefault();
+
+            // Don't continue if we're locked in.
+            if (modal[which+'Lock'] === true) return;
+
+            // Lock so users can't submit constantly.
+            this[which+'Lock'] = true;
+            $('#'+which+'Submit').addClass('disabled');
+
+            var data = { form: which };
+
+            switch(which) {
+                case 'register':
+                    data.first = this.registerFirst;
+                    data.last = this.registerLastl
+                    data.email = this.registerEmail;
+                    data.password = this.registerPassword;
+                    this.$set('registerSubmit', 'Registering...');
+                    break;
+                case 'login':
+                    data.user = this.loginUser;
+                    data.password = this.loginPassword;
+                    this.$set('loginSubmit', 'Logging In...');
+                    break;
+                case 'password':
+                    data.email = this.passwordEmail;
+                    this.$set('passwordSubmit', 'Resetting Password...')
+                    break;
+            }
+
+            // Simulate a post, or whatever method you want to use.
+            setTimeout(function() {
+                modal.$set(which+'Lock', false);
+                modal.$set('passwordSubmit', modal_submit_password);
+                modal.$set('loginSubmit', modal_submit_login);
+                modal.$set('registerSubmit', modal_submit_register);
+                $('#'+which+'Submit').removeClass('disabled');
+                modal.$set(which+'Error', ' Error! You can\'t actually submit!');
+            }, 1500);
+        }
+
+  },
+  ready: function () {
+    document.addEventListener("keydown", (e) => {
+      if (this.show && e.keyCode == 27) {
+        this.close();
+      }
+    });
+  }
+
+})
+
+ // register modal component
+Vue.component('modal', {
+  template: '#modal-template-signup',
+  props: {
+    show: {
+      type: Boolean,
+      required: true,
+      twoWay: true
+    }
+  }
+
+})
+
+
+// start app
+new Vue({
+  el: '#app_signup',
+  data: {
+    showModal: false,
+    active: null,
+    email: '',
+    username: '',
+    first: '',
+    last: '',
+        // Submit button text
+    registerSubmit: modal_submit_register,
+    passwordSubmit: modal_submit_password,
+    loginSubmit: modal_submit_login,
+
+        // Modal text fields
+    registerName: '',
+    registerEmail: '',
+    registerUser: '',
+    registerFirst: '',
+    registerLast: '',
+    registerPassword: '',
+    loginUser: '',
+    loginPassword: '',
+    passwordEmail: '',
+
+        // Modal error messages
+    registerError: '',
+    loginError: '',
+    passwordError: '',
+  },
+  methods: {
+    open: function(which, e) {
+      // Prevents clicking the link from doing anything
+        e.preventDefault();
+        if (modal.active !== null) {
+                $('#form-' + modal.active).removeClass('active');
+                $('#' + modal.active + '-form').removeClass('active');
+        }
+
+        $('#login-modal').addClass('active');
+        $('#form-' + which).addClass('active');
+        $('#' + which + '-form').addClass('active');
+        modal.active = which;
+    },
+    close: function (e) {
+            e.preventDefault();
+            if (e.target === this.$el) {
+                $('#login-modal').removeClass('active');
+            }
+    },
+    submit: function(which, e) {
+            e.preventDefault();
+
+            // Don't continue if we're locked in.
+            if (modal[which+'Lock'] === true) return;
+
+            // Lock so users can't submit constantly.
+            this[which+'Lock'] = true;
+            $('#'+which+'Submit').addClass('disabled');
+
+            var data = { form: which };
+
+            switch(which) {
+                case 'register':
+                    data.first = this.registerFirstName;
+                    data.last = this.registerLastName; 
+                    data.username = this.registerUser;
+                    data.email = this.registerEmail;
+                    data.password = this.registerPassword;
+                    this.$set('registerSubmit', 'Registering...');
+                    break;
+                case 'login':
+                    data.user = this.loginUser;
+                    data.password = this.loginPassword;
+                    this.$set('loginSubmit', 'Logging In...');
+                    break;
+                case 'password':
+                    data.email = this.passwordEmail;
+                    this.$set('passwordSubmit', 'Resetting Password...')
+                    break;
+            }
+
+            // Simulate a post, or whatever method you want to use.
+            setTimeout(function() {
+                modal.$set(which+'Lock', false);
+                modal.$set('passwordSubmit', modal_submit_password);
+                modal.$set('loginSubmit', modal_submit_login);
+                modal.$set('registerSubmit', modal_submit_register);
+                $('#'+which+'Submit').removeClass('disabled');
+                modal.$set(which+'Error', ' Error! You can\'t actually submit!');
+            }, 1500);
+        }
+
+
+  },
+  ready: function () {
+    document.addEventListener("keydown", (e) => {
+      if (this.show && e.keyCode == 27) {
+        this.close();
+      }
+    });
+  }
+})
+
+ </script>
+<script src="/static/js/script.js"></script>
+ <script>
+</body>
+</html>
