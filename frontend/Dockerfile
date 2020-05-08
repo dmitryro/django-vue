@@ -12,5 +12,5 @@ RUN \
   npm install -G yarn typescript && \
   yarn
 
-EXPOSE "8080:8080"
+EXPOSE 8080
 
